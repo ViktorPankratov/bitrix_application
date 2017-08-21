@@ -27,6 +27,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
+	),
+	Array(
+		"Регистрация", 
+		"/register.php", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
