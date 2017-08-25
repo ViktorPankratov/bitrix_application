@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Регистрация");
 ?>
 
 <?$APPLICATION->IncludeComponent(
-	"custom:signup.form"
+	"custom:signup"
 );?>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

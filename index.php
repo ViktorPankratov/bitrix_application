@@ -4,18 +4,34 @@ $APPLICATION->SetPageProperty("title", "Демонстрационная вер�
 $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
 $APPLICATION->SetTitle("Каталог книг");
 ?> <?$APPLICATION->IncludeComponent(
-	"bitrix:catalog.section.list",
-	"",
-	Array(
-		"IBLOCK_TYPE" => "books",
+	"bitrix:catalog.section.list", 
+	".default", 
+	array(
+		"IBLOCK_TYPE" => "news",
 		"IBLOCK_ID" => "6",
 		"SECTION_ID" => $_REQUEST["SECTION_ID"],
 		"SECTION_URL" => "/e-store/books/#SECTION_ID#/",
 		"COUNT_ELEMENTS" => "Y",
 		"DISPLAY_PANEL" => "N",
 		"CACHE_TYPE" => "A",
-		"CACHE_TIME" => "3600"
-	)
+		"CACHE_TIME" => "3600",
+		"COMPONENT_TEMPLATE" => ".default",
+		"SECTION_CODE" => "",
+		"TOP_DEPTH" => "2",
+		"SECTION_FIELDS" => array(
+			0 => "",
+			1 => "",
+		),
+		"SECTION_USER_FIELDS" => array(
+			0 => "",
+			1 => "",
+		),
+		"VIEW_MODE" => "LINE",
+		"SHOW_PARENT_NAME" => "Y",
+		"CACHE_GROUPS" => "Y",
+		"ADD_SECTIONS_CHAIN" => "Y"
+	),
+	false
 );?>
 <hr />
 
