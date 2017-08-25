@@ -112,19 +112,18 @@ a.expand:hover {
 
 /* Footer
 -----------------------------------------------------------------------------*/
-.footer {
-	height: 80px;
-	background: #BFF08E;
-}
+
 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
-.top-menu {
+.top-menu, .footer {
   position: relative; 
   background: #fff;
   box-shadow: inset 0 0 10px #ccc;
 }
 .top-menu:before,
-.top-menu:after {
+.top-menu:after,
+.footer:before,
+.footer:after {
   content: "";
   display: block;
   height: 1px;
@@ -132,7 +131,8 @@ a.expand:hover {
   border-bottom: 1px solid #575350;
   margin-bottom: 2px;
 }
-.top-menu:after {
+.top-menu:after,
+.footer:after {
   border-bottom: 3px solid #575350;
   border-top: 1px solid #575350;
   box-shadow: 0 2px 7px #ccc;
@@ -154,13 +154,13 @@ a.expand:hover {
   top: 50%;
   transform: translateY(-50%);
 }
-.menu-main:before {left: 15px;}
-.menu-main:after {right: 15px;}
+.menu-main:before, .footer:before {left: 15px;}
+.menu-main:after, .footer:after {right: 15px;}
 .menu-main li {
   display: inline-block;
   padding: 5px 0;
 }
-.menu-main a {
+.menu-main a, .footer a {
   text-decoration: none;
   display: inline-block;
   margin: 2px 5px;
