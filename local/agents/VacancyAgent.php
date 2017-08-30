@@ -1,6 +1,6 @@
 <?
 namespace Local\Agents;
-class VacancyAgent{
+class vacancyAgent{
 	public static function updateActive(){
 	}
 }
