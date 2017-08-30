@@ -1,0 +1,1 @@
+<?$APPLICATION->IncludeComponent("custom:vacancy.list","", array("IBLOCK_TYPE" => "vacancy", "IBLOCK_ID" => "12"), $component);?>
