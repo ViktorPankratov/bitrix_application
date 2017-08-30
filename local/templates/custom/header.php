@@ -14,6 +14,7 @@
 		    <li><a href="/">Главная</a></li>
 		    <li><a href="/register.php">Регистрация</a></li>
 		    <li><a href="/signin.php">Авторизация</a></li>
+		    <li><a href="/vacancies/">Вакансии</a></li>
 		  </ul>
 		</nav>
 </header>
