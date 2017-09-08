@@ -10,4 +10,5 @@
 	$DB->Query('INSERT INTO v_response(
 		user_id, vacancy_id, message) VALUES (
 		' . $u_id . ',' . $v_id . ',"' . $r_text . '")');
+	header('Location: /vacancies/' . $v_id);
 ?>
