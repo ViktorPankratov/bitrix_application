@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<script src="<? echo SITE_TEMPLATE_PATH; ?>/js/jquery-3.2.1.js"></script>
 	<?$APPLICATION->ShowHead()?>
 	<title><?$APPLICATION->ShowTitle()?></title>
 </head>
