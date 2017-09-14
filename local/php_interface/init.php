@@ -8,11 +8,14 @@ function FunctionName(params)
 	//code
 }
 */
+
+CModule::IncludeModule("main");
 CModule::AddAutoloadClasses(
     '',
     array(
-        'Local\Agents\VacancyAgent' => '/local/agents/VacancyAgent.php',
+        'VacancyAgent' => '/local/agents/VacancyAgent.php',
+        'Bitrix\Modules\Iblock' => '/bitrix/modules/iblock/iblock.php',
         )
 );
-Local\Agents\VacancyAgent::updateActive();
+VacancyAgent::updateActive();
 ?>
