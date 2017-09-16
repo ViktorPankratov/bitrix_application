@@ -34,16 +34,20 @@ $( window ).on( "load", function() {
 	     });
 
 	     send.click(function(){
-	     	vacid = $("#idVacancy").val();
-	     	uid = $("#idUser").val();
-	     	rtext = $("#resp_text").val();
+	     	var vacid = $("#idVacancy").val();
+	     	var uid = $("#idUser").val();
+	     	var rtext = $("#resp_text").val();
+	     	var price_from = $("#price_from").val();
+	     	var price_to = $("#price_to").val();
 			$.ajax({
 				url: "/local/helpers/response/add_response.php",
 				dataType: "json",
 				type: "post",
 				data: { v_id : vacid,
 				 		u_id : uid,
-				 		r_text : rtext
+				 		r_text : rtext,
+				 		price_from : price_from,
+				 		price_to : price_to
 				}
 			}).done(function(info){
 				$('#send_resp_info').css('display', 'block');
