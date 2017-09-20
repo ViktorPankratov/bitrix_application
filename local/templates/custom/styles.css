@@ -181,3 +181,16 @@ a.expand:hover {
 @media (max-width: 500px) {
   .menu-main li {display: block;}
 }
+.vert-nav:hover{
+  border: 1px solid #575350;
+}
+.vert-nav{
+  z-index: 2;
+  position: absolute;
+  display: block;
+  width: 150px;
+  background-color: #fff;
+}
+.vert-nav ul{
+	display: none;
+}
