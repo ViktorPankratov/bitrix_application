@@ -26,9 +26,9 @@ class vacancy extends CBitrixComponent {
 		while ($vacancyElement = $res->GetNextElement()) {
 			$elementProp = $vacancyElement->GetProperties();
 			$v_employer_id = $this->getPropertyValue($elementProp, 'employer_id');
+			$el = $vacancyElement->GetFields();
 			if (($this->arParams["EMPLOYER"] == "Y") && ( $v_employer_id == $u_employer_id ) || ($this->arParams["EMPLOYER"] == "N")){
-				if(isset($_POST["ISRESPONSED"])){					
-					$el = $vacancyElement->GetFields();
+				if(isset($_POST["ISRESPONSED"])){
 					$resp_res = $DB->query("SELECT COUNT(*) FROM v_response WHERE vacancy_id = " . $el["ID"] ."");
 					$resp_res = $resp_res->getNext();			
 					if($resp_res['COUNT(*)'] == 0){

@@ -1,5 +1,5 @@
 <div id="send_resp_info"></div>
-<div id="responseBtnWrap"></div>
+
 <div id="response"> 
 	<span id="modal_label">Откликнуться на вакансию</span>
 	<span id="modal_close">X</span>
@@ -18,12 +18,16 @@
 	</form>
 </div>
 <div id="overlay"></div>
-<? echo $arResult["VACANCY"]["NAME"];?><br>
-<? echo $arResult["VACANCY"]["DESCRIPTION"];?><br>
-<? echo $arResult["VACANCY"]["EMPLOYER"];?><br>
-<? echo $arResult["VACANCY"]["PRICE"];?><br>
-<? echo $arResult["VACANCY"]["NEED"];?><br>
-<a href="./">К остальным вакансиям</a>
+<div class="wrapper">
+	<div class="vacancy_item">	
+		<span class="vacancy_item_name"><? echo $arResult["VACANCY"]["NAME"];?></span>   (<span id="responseBtnWrap"></span>)
+		<span class="vacancy_item_employer_price"><? echo $arResult["VACANCY"]["EMPLOYER"];?>, <? echo $arResult["VACANCY"]["PRICE"];?> &#8381</span>
+		<div class="vacancy_item_description"><? echo $arResult["VACANCY"]["DESCRIPTION"];?></div>	
+		<div class="vacancy_item_need"><? echo $arResult["VACANCY"]["NEED"];?></div>
+		<div class="vacancy_item_to_list_btn"><a href="./">К остальным вакансиям</a></div>
+	</div>
+</div>
+
 
 <? $this->addExternalCss("style.css"); ?>
 <? $this->addExternalJS("script.js"); ?>
