@@ -2,9 +2,11 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); 
 class vacancy extends CBitrixComponent { 
 	public function executeComponent() { 
+		global $USER;
 		global $DB;
-		CModule::IncludeModule('employ');
-		$u_employer_id = Employer::GetEmployerId();
+		$bla = CUser::GetByID($USER->GetID());
+		$bla = $bla->getNext();
+		$u_employer_id = $bla['employer_id'];
 		if(isset($_POST["v_date_from"])){
 			$date = new DateTime($_POST["v_date_from"]);
 			$date_from = date('d.m.Y H:i:s', $date->getTimestamp());
@@ -13,9 +15,14 @@ class vacancy extends CBitrixComponent {
 			$date1 = new DateTime($_POST["v_date_to"]);
 			$date_to = date('d.m.Y H:i:s', $date1->getTimestamp());
 		}
-		CModule::IncludeModule('iblock');
-		$arFilter = array("ACTIVE" => $_POST["ACTIVE"], ">=DATE_CREATE" => $date_from, "<=DATE_CREATE" => $date_to, 'IBLOCK_ID' => $this->arParams['IBLOCK_TYPE']);
-		$res = VacancyList::GetList($arFilter);
+		CModule::IncludeModule('iblock'); 
+		$IBLOCK_ID = $this->arParams['IBLOCK_ID']; 
+		$IBLOCK_TYPE = $this->arParams['IBLOCK_TYPE']; 
+		$PAGER_TITLE = 'Вакансии'; 
+		$arSelect = array("ID", "IBLOCK_ID", "DETAIL_PAGE_URL");
+		$arFilter = array("IBLOCK_TYPE" => $IBLOCK_TYPE, "IBLOCK_ID" => $IBLOCK_ID, "ACTIVE" => $_POST["ACTIVE"], ">=DATE_CREATE" => $date_from, "<=DATE_CREATE" => $date_to); 
+		$arNavParams = array("nPageSize" => '10', "bDescPageNumbering" => 'Y', "bShowAll" => 'Y'); 
+		$res = CIBlockElement::GetList(array(), $arFilter, false, $arNavParams, $arSelect); 
 		while ($vacancyElement = $res->GetNextElement()) {
 			$elementProp = $vacancyElement->GetProperties();
 			$v_employer_id = $this->getPropertyValue($elementProp, 'employer_id');
