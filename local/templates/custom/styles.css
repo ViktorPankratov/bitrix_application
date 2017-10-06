@@ -59,12 +59,6 @@ a.expand {
 a.expand:hover {
 	height: 500px;
 }
-/* End of of styles for the demo */
-.wrapper {
-	min-width: 400px;
-	max-width: 1920px;
-	margin: 0 auto;
-}
 /* Middle
 -----------------------------------------------------------------------------*/
 .middle {
@@ -180,4 +174,70 @@ a.expand:hover {
 }
 @media (max-width: 500px) {
   .menu-main li {display: block;}
+}
+.vert-nav:hover{
+  border: 1px solid #575350;
+}
+.vert-nav{
+  z-index: 2;
+  position: absolute;
+  display: block;
+  width: 150px;
+  background-color: #fff;
+}
+.vert-nav ul{
+	display: none;
+}
+.wrapper{
+  width: 960px;
+  margin-left: 480px;
+}
+.response_item, .vacancy_item, .auth_form, .reg_form{
+  margin-top: 10px;
+  padding : 10px;
+  width: 700px;
+  height: 100px;
+  margin-left: 130px;
+  background : rgba(255,222,196,0.2);
+  border-radius: 10px;
+}
+.vacancy_item{
+  height: 180px;
+}
+.response_item_name, .vacancy_item_name{
+  font-size: 20px;
+}
+.response_item_price, .vacancy_item_employer_price{
+  float: right;
+}
+.response_item_message, .vacancy_item_description, .vacancy_item_need{
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 60px;
+}
+.response_item_datetime_and_author{
+  float: right;
+  color : rgba(0,0,0,0.5);
+}
+.nav_panel{
+  margin-left: 370px;
+}
+.vacancy_list_filter_form{
+  margin-top: 10px;
+  padding : 10px;
+  margin-left: 120px;
+  width: 360px;
+  position: fixed;
+  background : rgba(255,222,196,0.2);
+  border-radius: 10px;
+}
+#vacancy_list_filter_form_drop_filter_btn{
+  background: rgba(255,222,196,0.2);
+  border-style: none;
+  float: right;
+}
+#vacancy_list_filter_form_submit{
+  width: 150px;
+  margin-left: 105px;
+  margin-top: 10px;
 }
