@@ -114,6 +114,12 @@ a.expand:hover {
   background: #fff;
   box-shadow: inset 0 0 10px #ccc;
 }
+.footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding-top: 10px;
+}
 .top-menu:before,
 .top-menu:after,
 .footer:before,
@@ -196,13 +202,15 @@ a.expand:hover {
   margin-top: 10px;
   padding : 10px;
   width: 700px;
-  height: 100px;
   margin-left: 130px;
   background : rgba(255,222,196,0.2);
   border-radius: 10px;
 }
 .vacancy_item{
   height: 180px;
+}
+.response_item{
+  height: 100px;
 }
 .response_item_name, .vacancy_item_name{
   font-size: 20px;
@@ -222,7 +230,7 @@ a.expand:hover {
 .nav_panel{
   margin-left: 370px;
 }
-.vacancy_list_filter_form{
+.vacancy_list_filter_form, .response_list_filter_form{
   margin-top: 10px;
   padding : 10px;
   margin-left: 120px;
@@ -231,12 +239,12 @@ a.expand:hover {
   background : rgba(255,222,196,0.2);
   border-radius: 10px;
 }
-#vacancy_list_filter_form_drop_filter_btn{
+#vacancy_list_filter_form_drop_filter_btn, #response_list_filter_form_drop_filter_btn{
   background: rgba(255,222,196,0.2);
   border-style: none;
   float: right;
 }
-#vacancy_list_filter_form_submit{
+#vacancy_list_filter_form_submit, #response_list_filter_form_submit{
   width: 150px;
   margin-left: 105px;
   margin-top: 10px;

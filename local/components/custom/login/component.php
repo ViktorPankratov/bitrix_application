@@ -1,6 +1,5 @@
 <? 
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-require($_SERVER["DOCUMENT_ROOT"]."/local/layouts/login/login.php");
 if(isset($_POST['submit']))
 {
     global $USER;
@@ -14,4 +13,5 @@ if(isset($_POST['submit']))
         ShowMessage($arAuthResult);
     }
 }
+$this->IncludeComponentTemplate();
 ?>

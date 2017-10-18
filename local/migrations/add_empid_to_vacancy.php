@@ -15,8 +15,8 @@ require($DOCUMENT_ROOT . "/bitrix/modules/main/include/prolog_before.php");
 
 CModule::IncludeModule("iblock");
 
-$iBlock_list = CIBlock::Getlist();
-while($block = $iBlock_list->getNext()){
+$iBlockList = CIBlock::Getlist();
+while($block = $iBlockList->getNext()){
   if($block['NAME'] == 'Вакансия'){
     $vacancy_block = $block;
   }
@@ -31,7 +31,7 @@ function addiBlockProperty($fields)
     return $id;
 }
 $fields = array(
-  "NAME" => "employer_id",
+  "NAME" => "EMPLOYER_ID",
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "N",

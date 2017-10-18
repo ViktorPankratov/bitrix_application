@@ -1,6 +1,5 @@
 <? 
-if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); 
-require($_SERVER["DOCUMENT_ROOT"]."/local/layouts/signup/signup.php");
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 if(isset($_POST['submit'])){
     $user = new CUser;
     $arFields = Array(
@@ -15,4 +14,5 @@ if(isset($_POST['submit'])){
     else
         echo $user->LAST_ERROR;
 }
+$this->IncludeComponentTemplate();
 ?>

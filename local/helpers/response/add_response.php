@@ -1,19 +1,22 @@
 <?
+	use Bitrix\Main\Type;
 	$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 	require($DOCUMENT_ROOT . "/bitrix/modules/main/include/prolog_before.php");
 
-	CModule::IncludeModule('employ');
-	$u_id = $_POST['u_id'];
-	$v_id = $_POST['v_id'];
-	$r_text = $_POST['r_text'];
-	$price_from = $_POST['price_from'];
-	$price_to = $_POST['price_to'];
+	CModule::IncludeModule("employ");
+	$userID = $_POST['u_id'];
+	$vacancyID = $_POST['v_id'];
+	$responseText = $_POST['r_text'];
+	$priceFrom = $_POST['price_from'];
+	$priceTo = $_POST['price_to'];
+	$date = new DateTime;
 	$res = ResponsesCatalog\ResponseTable::add(array(
-		'user_id' => $u_id,
-		'vacancy_id' => $v_id,
-		'message' => $r_text,
-		'price_from' => $price_from,
-		'price_to' => $price_to
+		'USER_ID' => $userID,
+		'VACANCY_ID' => $vacancyID,
+		'MESSAGE' => $responseText,
+		'PRICE_FROM' => $priceFrom,
+		'PRICE_TO' => $priceTo,
+		'CREATED' => new Type\Date($date->format('Y-m-d'), 'Y-m-d'),
 	));
 
 	if ($res->isSuccess()){

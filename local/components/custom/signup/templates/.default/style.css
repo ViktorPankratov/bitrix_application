@@ -1,0 +1,12 @@
+.reg_form{
+    height: 190px;
+    margin-bottom: 10px;
+}
+.reg_form b{
+    font-size: 20px;
+}
+.reg_form div input, button{
+    margin-top: 10px;
+    margin-left: 230px;
+    width: 200px;
+}

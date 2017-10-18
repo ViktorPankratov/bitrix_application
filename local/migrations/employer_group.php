@@ -20,7 +20,7 @@ require($DOCUMENT_ROOT . "/bitrix/modules/main/include/prolog_before.php");
 CModule::IncludeModule("iblock");
 
 // Создание группы Работодателей
-$employer_group = new CGroup;
+$employerGroup = new CGroup;
 $arFields = Array(
   "ACTIVE" => "Y",
   "C_SORT" => 10,
@@ -28,8 +28,8 @@ $arFields = Array(
   "DESCRIPTION" => "Администраторы вакансий",
   "STRING_ID" => "employers"
   );
-$employer_group->Add($arFields);
-if (strlen($employer_group->LAST_ERROR) > 0) {
-    ShowError($employer_group->LAST_ERROR);
+$employerGroup->Add($arFields);
+if (strlen($employerGroup->LAST_ERROR) > 0) {
+    ShowError($employerGroup->LAST_ERROR);
 }
 ?>
