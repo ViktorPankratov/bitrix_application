@@ -1,9 +1,11 @@
 <?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
-class vacancyDetail extends CBitrixComponent{
-	public function executeComponent(){
-	    CModule::IncludeModule('iblock');
-		CModule::IncludeModule('employ');
+class VacancyDetail extends CBitrixComponent
+{
+	public function executeComponent()
+	{
+	    CModule::IncludeModule("iblock");
+		CModule::IncludeModule("employ");
 		$arFields = array("NAME" => 'Название', 
 			"DESCRIPTION" => 'Описание', 
 			"EMPLOYER" => 'Работодатель',

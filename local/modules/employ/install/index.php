@@ -21,25 +21,26 @@ Class employ extends CModule
 	function InstallFiles()
 	{
 		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/local/modules/employ", $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/employ", true, true);
-		CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/employ/install/components", $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
+		// CopyDirFiles($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/employ/install/components", $_SERVER["DOCUMENT_ROOT"]."/bitrix/components", true, true);
 		return true;
 	}
 	function InstallDB()
 	{
 		\Bitrix\Main\Application::getConnection()->queryExecute("CREATE TABLE IF NOT EXISTS v_response(
-		   id INTEGER NOT NULL auto_increment,
-		   user_id INTEGER NOT NULL,
-		   created TIMESTAMP NOT NULL,
-		   vacancy_id INTEGER NOT NULL,
-		   message TEXT,
-		   price_from INTEGER,
-		   price_to INTEGER,
-		   PRIMARY KEY(id))
+		   ID INTEGER NOT NULL auto_increment,
+		   USER_ID INTEGER NOT NULL,
+		   CREATED TIMESTAMP NOT NULL,
+		   VACANCY_ID INTEGER NOT NULL,
+		   MESSAGE TEXT,
+		   PRICE_FROM INTEGER,
+		   PRICE_TO INTEGER,
+		   PRIMARY KEY(ID))
 		   ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;");
 	}
 	function UnInstallFiles()
 	{
-		DeleteDirFiles("/bitrix/components/employ/response.list");
+		DeleteDirFiles("/bitrix/modules/employ");
+		// DeleteDirFiles("/bitrix/components/employ/response.list");
 		return true;
 	}
 	function UnInstallDB()
@@ -51,7 +52,7 @@ Class employ extends CModule
 		global $DOCUMENT_ROOT, $APPLICATION;
 		RegisterModule("employ");
 		$this->InstallFiles();
-		// $this->InstallDB();
+		$this->InstallDB();
 		$APPLICATION->IncludeAdminFile("Установка модуля employ", $DOCUMENT_ROOT."/bitrix/modules/employ/install/step.php");
 	}
 	function DoUninstall()

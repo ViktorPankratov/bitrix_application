@@ -14,18 +14,18 @@ class ResponseTable extends Entity\DataManager{
 
     public static function getMap(){
         return array(
-            new Entity\IntegerField('id', array(
+            new Entity\IntegerField('ID', array(
                 'primary' => true,
                 'autocomplete' => true
             )),
-            new Entity\IntegerField('user_id'),
-            new Entity\DateField('created'),         
-            new Entity\IntegerField('vacancy_id'),
-            new Entity\StringField('message', array(
+            new Entity\IntegerField('USER_ID'),
+            new Entity\DateField('CREATED'),         
+            new Entity\IntegerField('VACANCY_ID'),
+            new Entity\StringField('MESSAGE', array(
                 'required' => true
             )),
-            new Entity\IntegerField('price_from'),
-            new Entity\IntegerField('price_to')
+            new Entity\IntegerField('PRICE_FROM'),
+            new Entity\IntegerField('PRICE_TO')
         );
     }
 }

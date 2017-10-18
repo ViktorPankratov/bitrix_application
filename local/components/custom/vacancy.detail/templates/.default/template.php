@@ -9,8 +9,8 @@
 			от <input type="text" data-validation="number" id="price_from" class="price_field" maxlength="15"/>
 			до <input type="text" data-validation="number" id="price_to" class="price_field" maxlength="15"/> &#8381
 		</div>
-		<input type="hidden" id="idVacancy" name="v_id" value="<? echo $arResult["VACANCY"]["ID"]; ?>" />
-		<input type="hidden" id= "idUser" name="u_id" value="<? echo $USER->getID() ?>" />
+		<input type="hidden" id="idVacancy" name="v_id" value="<?=$arResult["VACANCY"]["ID"];?>" />
+		<input type="hidden" id= "idUser" name="u_id" value="<?=$USER->getID();?>" />
 		<textarea data-validation="length" data-validation-length="50-2000" id="resp_text" name="r_text" placeholder="Введите текст сообщения(от 50 до 2000 символов)"></textarea>		
 		<input id="resp_button" type="submit" value="Откликнуться" />
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -20,14 +20,10 @@
 <div id="overlay"></div>
 <div class="wrapper">
 	<div class="vacancy_item">	
-		<span class="vacancy_item_name"><? echo $arResult["VACANCY"]["NAME"];?></span>   (<span id="responseBtnWrap"></span>)
-		<span class="vacancy_item_employer_price"><? echo $arResult["VACANCY"]["EMPLOYER"];?>, <? echo $arResult["VACANCY"]["PRICE"];?> &#8381</span>
-		<div class="vacancy_item_description"><? echo $arResult["VACANCY"]["DESCRIPTION"];?></div>	
-		<div class="vacancy_item_need"><? echo $arResult["VACANCY"]["NEED"];?></div>
+		<span class="vacancy_item_name"><?=$arResult["VACANCY"]["NAME"]?></span>   (<span id="responseBtnWrap"></span>)
+		<span class="vacancy_item_employer_price"><?=$arResult["VACANCY"]["EMPLOYER"]?>, <?=$arResult["VACANCY"]["PRICE"]?> &#8381</span>
+		<div class="vacancy_item_description"><?=$arResult["VACANCY"]["DESCRIPTION"]?></div>	
+		<div class="vacancy_item_need"><?=$arResult["VACANCY"]["NEED"]?></div>
 		<div class="vacancy_item_to_list_btn"><a href="./">К остальным вакансиям</a></div>
 	</div>
 </div>
-
-
-<? $this->addExternalCss("style.css"); ?>
-<? $this->addExternalJS("script.js"); ?>

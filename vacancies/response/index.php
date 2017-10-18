@@ -1,13 +1,13 @@
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");?>
 
 <?
-	
+	use Bitrix\Main\Type;
 	$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 	require($DOCUMENT_ROOT . "/bitrix/modules/main/include/prolog_before.php");
 	
 	CModule::IncludeModule("iblock");
 	$arSelect = array("ID", "IBLOCK_ID", "DETAIL_PAGE_URL", "PROPERTY_CODE", "NAME");
-	$arFilter = array("IBLOCK_TYPE" => 'vacancy', "IBLOCK_ID" => 12); 
+	$arFilter = array("IBLOCK_TYPE" => "vacancy", "IBLOCK_ID" => "3"); 
 	$arNavParams = array("nPageSize" => '10', "bDescPageNumbering" => 'Y', "bShowAll" => 'Y'); 
 	$res = CIBlockElement::GetList(array(), $arFilter, false, $arNavParams, $arSelect);
 	while ($vacancyElement = $res->GetNextElement()) {
@@ -15,49 +15,58 @@
 		$el = $vacancyElement->GetFields();
 		foreach ($elementProp as $key => $value){
 			if ($value['NAME'] == 'Название'){
-				$v_name[$el['ID']] = $value['VALUE'];
+				$vacancyName[$el['ID']] = $value['VALUE'];
 			}
 		}
     }
-
- //    if(isset($_POST["v_date_from"])){
-	// 	$date = new DateTime($_POST["v_date_from"]);
-	// 	$date_from = date('d.m.Y H:i:s', $date->getTimestamp());
-	// }
-	// if(isset($_POST["v_date_to"])){		
-	// 	$date1 = new DateTime($_POST["v_date_to"]);
-	// 	$date_to = date('d.m.Y H:i:s', $date1->getTimestamp());
-	// }
-
+    $arFilter = array();
+    if($_POST["lf_by_login"]){
+    	$userr = CUser::GetByLogin($_POST["lf_by_login"])->GetNext();
+    	$arFilter['=USER_ID'] = $userr['ID'];
+    }
+    if($_POST["lf_by_vacancy"]){
+    	foreach ($vacancyName as $key => $value) {
+    		if($_POST["lf_by_vacancy"] == $value){
+    			$arFilter['=VACANCY_ID'] = $key;
+    			break;
+    		}
+    	}   	
+    }
+    if($_POST["r_date_from"]){
+    	$arFilter[">=CREATED"] = new Type\Date($_POST["r_date_from"], 'Y-m-d');
+    }
+    if($_POST["r_date_to"]){
+    	$arFilter["<=CREATED"] = new Type\Date($_POST["r_date_to"], 'Y-m-d');
+    }
 	CModule::IncludeModule("employ");
 	$res = ResponsesCatalog\ResponseTable::GetList(array(
-    	'select' => array('user_id', 'vacancy_id', 'created', 'message', 'price_from', 'price_to'),
-    	// 'filter' => array('>=DATE_CREATE' => $date_from, '<=DATE_CREATE' => $date_to),
-    	'limit' => 20,
-    	'offset' => 120
+    	'select' => array('USER_ID', 'VACANCY_ID', 'CREATED', 'MESSAGE', 'PRICE_FROM', 'PRICE_TO'),
+    	'filter' => $arFilter,
 	));
-	$el = $res->fetchAll();
-
-	foreach ($el as $key => $value) {
-	 	$user_resp = CUSER::GetByID($value['user_id']);
-		$user_resp = $user_resp->GetNext();
+	while($el = $res->Fetch()){
+		$respUser = CUSER::GetByID($el['USER_ID']);
+		$respUser = $respUser->GetNext();
 		$response = array(
-			"USER_NAME" => $user_resp['LOGIN'],
-			"VAC_NAME" => $v_name[$value['vacancy_id']],
-			"DATETIME" => $value['created'],
-			"MESSAGE" => $value['message'],
-			"PRICE_FROM" => $value['price_from'],
-			"PRICE_TO" => $value['price_to']
+			"USER_NAME" => $respUser['LOGIN'],
+			"VAC_NAME" => $vacancyName[$el['VACANCY_ID']],
+			"DATETIME" => $el['CREATED'],
+			"MESSAGE" => $el['MESSAGE'],
+			"PRICE_FROM" => $el['PRICE_FROM'],
+			"PRICE_TO" => $el['PRICE_TO']
 		);
 		$arResult["RESPONSES"][] = $response;
-	 }
+	}
 ?>
 
-<!-- <form action="index.php" method="POST">
-	Дата от <input type="date" name="v_date_from" value="1970-01-01">
-	до <input type="date" name="v_date_to" value="<?php echo date('Y-m-d'); ?>"><br>
-	<input type="submit" value="Применить">
-</form> -->
+<form action="index.php" method="POST" class="response_list_filter_form">
+	Показывать только
+	<button id="response_list_filter_form_drop_filter_btn"><a href="<?=$APPLICATION->GetCurPage();?>">Сбросить фильтры</a></button>
+	<div>От пользователя <br><input type="text" name="lf_by_login" value="<?=$_POST["lf_by_login"]?>"></div>
+	<div>На вакансию <br><input type="text" name="lf_by_vacancy" value="<?=$_POST["lf_by_vacancy"]?>"></div><br>
+	<div>Дата от <input type="date" name="r_date_from" value="<?=$_POST["r_date_from"]?>">
+	до <input type="date" name="r_date_to" value="<?=$_POST["r_date_to"]?>"></div>
+	<input type="submit" value="Применить" id="response_list_filter_form_submit">
+</form>
 
 
 <div class="wrapper">
@@ -65,10 +74,10 @@
 		foreach ($arResult["RESPONSES"] as $value){
 			?>
 				<div class="response_item">					
-					<span class="response_item_name"><? echo $value["VAC_NAME"];?></span>
-					<span class="response_item_price"><? echo $value["PRICE_FROM"];?> - <? echo $value["PRICE_TO"];?></span>
-					<div class="response_item_message"><? echo $value["MESSAGE"];?></div>					
-					<div class="response_item_datetime_and_author"><? echo $value["DATETIME"];?>, <? echo $value["USER_NAME"];?></div>
+					<span class="response_item_name"><?=$value["VAC_NAME"]?></span>
+					<span class="response_item_price"><?=$value["PRICE_FROM"]?> - <?=$value["PRICE_TO"]?> &#8381</span>
+					<div class="response_item_message"><?=$value["MESSAGE"]?></div>					
+					<div class="response_item_datetime_and_author"><?=$value["DATETIME"]?>, <?=$value["USER_NAME"]?></div>
 				</div>
 			<?
 		}

@@ -1,13 +1,13 @@
 <?
 
-use Bitrix\Main\Entity;
-
-class VacancyList extends Entity\DataManager
+class VacancyList
 {
-    function __construct() {
+    function __construct() 
+    {
         CModule::IncludeModule("iblock");
     }
-    public function GetVacancyById($id, $arFields) {
+    public function GetVacancyById($id, $arFields) 
+    {
         $res = CIBlockElement::GetById($id);
    		$vacancyElement = $res->GetNextElement();
 	    $elementProp = $vacancyElement->GetProperties();
@@ -17,16 +17,16 @@ class VacancyList extends Entity\DataManager
 	    }
 		return $vacancy;
     }
-    public static function GetList($arfilter) {
-		$IBLOCK_TYPE = 'vacancy'; 
-		$PAGER_TITLE = 'Вакансии'; 
+    public static function GetList($filter) 
+    {
 		$arSelect = array("ID", "IBLOCK_ID", "DETAIL_PAGE_URL");
-		$arFilter = array("IBLOCK_TYPE" => $IBLOCK_TYPE, $arFilter); 
+		$arFilter = array($filter); 
 		$arNavParams = array("nPageSize" => '10', "bDescPageNumbering" => 'Y', "bShowAll" => 'Y'); 
 		$res = CIBlockElement::GetList(array(), $arFilter, false, $arNavParams, $arSelect); 
 		return $res;
     }
-    public function getPropertyValue($field, $name){
+    public function getPropertyValue($field, $name)
+    {
 		foreach ($field as $key => $value) {
 			if ($value['NAME'] == $name){
 				return $value['VALUE'];

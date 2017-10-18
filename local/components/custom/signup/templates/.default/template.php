@@ -1,20 +1,6 @@
-<style type="text/css">
-    .reg_form{
-        height: 200px;
-        margin-bottom: 10px;
-    }
-    h1{
-        font-size: 20px;
-    }
-    .reg_form div input, button{
-        margin-top: 10px;
-        margin-left: 230px;
-        width: 200px;
-    }
-</style>
 <div class="wrapper">
     <form  action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="reg_form"> 
-        <h1>Регистрация</h1>
+        <b>Регистрация</b>
         <div> 
         <input required type="text" name="name" placeholder="Имя"> 
         </div> 

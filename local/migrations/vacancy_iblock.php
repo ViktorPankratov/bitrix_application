@@ -30,8 +30,8 @@ $fields = array(
   'SORT' => 100,
   'GROUP_ID' => array('2'=>'D', '3'=>'D', '4'=>'D', '5'=>'W')
   );
-$iblock_id = $iBlock->Add($fields);
-if (!$iblock_id) {
+$iblockID = $iBlock->Add($fields);
+if (!$iblockID) {
 	echo 'Error: ' . $iBlock->LAST_ERROR;
 	die();
 }
@@ -51,7 +51,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "S",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 $fields = array(
@@ -59,7 +59,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "S",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 $fields = array(
@@ -67,7 +67,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "S",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 $fields = array(
@@ -75,7 +75,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "N",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 $fields = array(
@@ -83,7 +83,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "S",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
  $fields = array(
@@ -92,7 +92,7 @@ addiBlockProperty($fields);
   "SORT" => "600",
   "PROPERTY_TYPE" => "S",
   "USER_TYPE" => "DateTime",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 $fields = array(
@@ -100,7 +100,7 @@ $fields = array(
   "ACTIVE" => "Y",
   "SORT" => "600",
   "PROPERTY_TYPE" => "F",
-  "IBLOCK_ID" => $iblock_id
+  "IBLOCK_ID" => $iblockID
   );
 addiBlockProperty($fields);
 

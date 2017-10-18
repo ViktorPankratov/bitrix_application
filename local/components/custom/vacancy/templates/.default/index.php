@@ -1,1 +1,1 @@
-<?$APPLICATION->IncludeComponent("custom:vacancy.list","", array("IBLOCK_TYPE" => "vacancy", "IBLOCK_ID" => "12", "EMPLOYER" => $arParams["EMPLOYER"]), $component);?>
+<?$APPLICATION->IncludeComponent("custom:vacancy.list","", array("IBLOCK_TYPE" => "vacancy", "EMPLOYER_IBLOCK_ID"=> "4", "IBLOCK_ID" => "3", "EMPLOYER" => $arParams["EMPLOYER"]), $component);?>
